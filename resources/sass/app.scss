@@ -1,0 +1,62 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// basic style
+@import 'base';
+
+
+/* ------------------ universal ------------------ */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-family: Helvetica, "Microsoft YaHei", Arial, sans-serif;
+    font-size: 16px;
+    margin-bottom: 60px;
+}
+
+a {
+    color: rgb(156 163 175);
+    &:hover {
+        color: rgb(249 250 251);
+        text-decoration: none;
+    }
+}
+
+hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 0;
+    border-top: 1.2px solid rgb(255, 255, 255);
+}
+
+/* ------------------ header ------------------ */
+.navbar {
+    padding: 0.8rem 1.5rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+}
+
+.navbar-static-top {
+    margin-top: 0px;
+}
+
+
+/* ------------------ footer ------------------ */
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    padding: 0.5rem 1rem;
+}
