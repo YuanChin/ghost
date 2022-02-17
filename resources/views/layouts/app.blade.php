@@ -19,6 +19,7 @@
     <div id="app">
         @include('layouts.header')
         
+        @include('sweetalert::alert')
         <div class="container-fluid mt-4">
             @yield('content')
         </div>
