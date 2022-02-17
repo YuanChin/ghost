@@ -3,18 +3,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+        <div class="col-md-7">
+            <div class="card bg-gray-700 rounded-xl">
+                <div class="card-header border-gray-50 h3 text-gray-50">
+                    {{ __('重設密碼') }}
+                </div>
 
-                <div class="card-body">
+                <div class="card-body text-gray-400">
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('您的信箱') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
@@ -63,3 +65,4 @@
     </div>
 </div>
 @endsection
+
