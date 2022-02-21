@@ -93,6 +93,7 @@
                                                name="captcha" required placeholder="請輸入驗證碼 …">
                                         <img class="mt-3 mb-2" src="{{ captcha_src('flat') }}"
                                              onclick="this.src='/captcha/flat?' + Math.random()" title="點擊圖片重新獲取驗證碼">
+                                        
                                         @error('captcha')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ __('輸入驗證碼有誤！') }}</strong>
@@ -115,18 +116,40 @@
                                     </button>
                                 </form>
 
-                                <hr>
-
-                                <div class="text-center">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="mt-2">
                                     @if (Route::has('password.request'))
-                                        <a class="btn btn-link small" href="{{ route('password.request') }}">
+                                        <a class="btn btn-link small px-0" href="{{ route('password.request') }}">
                                             {{ __('忘記您的密碼?') }}
                                         </a>
                                     @endif
+                                    </div>
+                                    <div>
+                                        <a class="btn btn-link small px-0" href="{{ route('register') }}">創建帳號點我 !</a>
+                                    </div>
+                                    
+                                    
                                 </div>
 
-                                <div class="text-center">
-                                    <a class="btn btn-link small" href="{{ route('register') }}">創建帳號點我 !</a>
+                                <div class="d-flex flex-row justify-content-center mt-1">
+                                    <div class="mx-1">
+                                        <a class="text-blue-400 text-xl" href="{{ route('facebook.login') }}"
+                                           title="Login with Facebook">
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </a>
+                                    </div>
+                                    <div class="mx-1">
+                                        <a class="text-rose-400 text-xl" href=""
+                                           title="Login with Google">
+                                            <i class="fa-brands fa-google"></i>
+                                        </a>
+                                    </div>
+                                    <div class="mx-1">
+                                        <a class="text-gray-400 text-xl" href=""
+                                           title="Login with Github">
+                                            <i class="fa-brands fa-github"></i>
+                                        </a>
+                                    </div>   
                                 </div>
 
                             </div>
