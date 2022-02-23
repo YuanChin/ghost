@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,9 +12,8 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function show(Request $request)
+    public function show(User $user)
     {
-        $user = $request->user();
         return view('users.show', compact('user'));
     }
 
