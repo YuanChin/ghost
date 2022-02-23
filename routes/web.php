@@ -21,5 +21,22 @@ Route::prefix('facebook')->name('facebook.')->group(function () {
          ->name('callback');
 });
 
+
+/**
+ * they can be used after having to login and verify
+ */
+Route::middleware(['auth', 'verified'])->group(function () {
+     Route::resource('users', 'UserController')->only([
+          'edit', 'update'
+     ]);
+});
+
+
+/**
+ * They can be used for everyone
+ */
 Route::get('/', 'TopicController@index')
-     ->name('root')->middleware('verified');
+     ->name('root');
+// the related route of users
+Route::get('users/{user}', 'UserController@show')
+     ->name('users.show');

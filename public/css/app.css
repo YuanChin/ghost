@@ -19406,6 +19406,32 @@ hr {
   margin-top: 0px;
 }
 
+/* ------------------ the related css style of the user's pages ------------------ */
+#user-options-selector ul {
+  display: none;
+}
+#user-options-selector ul .active {
+  background-color: #60a5fa;
+}
+#user-options-selector ul .active a {
+  color: #111827;
+}
+
+/***** the angle's rotate of the user-options-selector *****/
+.initial-rotate {
+  transform: rotate(0);
+  transition: all 0.3s linear;
+  -webkit-transform: rotate(0);
+  -webkit-transition: all 0.3s linear;
+}
+
+.rotate {
+  transform: rotate(90deg);
+  transition: all 0.3s linear;
+  -webkit-transform: rotate(90deg);
+  -webkit-transition: all 0.3s linear;
+}
+
 /* ------------------ footer ------------------ */
 #footer {
   position: absolute;

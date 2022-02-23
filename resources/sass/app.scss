@@ -58,6 +58,38 @@ hr {
 }
 
 
+/* ------------------ the related css style of the user's pages ------------------ */
+#user-options-selector {
+    ul {
+        display: none;
+        .active {
+            background-color: rgb(96 165 250);
+            a {
+                color: rgb(17 24 39);
+            }
+        }
+    }
+}
+
+/***** the angle's rotate of the user-options-selector *****/
+// initial
+.initial-rotate {
+    transform: rotate(0);
+    transition: all .3s linear;
+    -webkit-transform: rotate(0);
+    -webkit-transition: all .3s linear;
+}
+
+// after
+.rotate{
+    transform: rotate(90deg);
+    transition: all .3s linear;
+    -webkit-transform: rotate(90deg);
+    -webkit-transition: all .3s linear;
+}
+
+
+
 /* ------------------ footer ------------------ */
 #footer {
     position: absolute;
