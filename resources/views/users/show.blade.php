@@ -39,7 +39,7 @@
                         <h5 class="my-2 text-gray-50"><strong>個人簡介</strong></h5>
                     </div>
                     <div class="d-flex">
-                        <p></p>
+                        <p class="text-break">{{ $user->introduction }}</p>
                     </div>
                 </div>
                 <hr>

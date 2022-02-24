@@ -1,9 +1,19 @@
 <nav class="navbar navbar-expand-lg text-gray-400 bg-gray-600 navbar-static-top sticky-top shadow">
+    
     <!-- Branding Image -->
-    <a class="navbar-brand text-gray-50" href="{{ url('/') }}"><i class="fa-solid fa-skull-crossbones mr-2"></i>Ghost</a>
-        
+    <a class="navbar-brand text-gray-50" href="{{ url('/') }}">
+        <div class="d-flex flex-row">
+            <div class="d-flex align-items-center mr-2">
+                <i class="fa-solid fa-skull-crossbones"></i>
+            </div>
+            <div class="d-flex">
+                Ghost
+            </div>
+        </div>
+    </a>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="fa-solid fa-bars fa-2x text-gray-300"></i>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,11 +35,11 @@
                     <span class="ml-1">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="user-menu dropdown-menu bg-gray-700 mt-1" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item text-gray-50" href="#">
+                    <a class="dropdown-item text-gray-50" href="{{ route('users.show', Auth::id()) }}">
                         <i class="far fa-user mr-2"></i>
                         個人中心
                     </a>
-                    <a class="dropdown-item text-gray-50" href="#">
+                    <a class="dropdown-item text-gray-50" href="{{ route('users.edit', Auth::id()) }}">
                         <i class="far fa-edit mr-2"></i>
                         編輯資料
                     </a>

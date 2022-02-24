@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,9 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function edit()
+    public function edit(User $user)
     {
-        return view('users.edit');
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -32,8 +33,9 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function update()
+    public function update(UserRequest $request, User $user)
     {
-
+        $user->update($request->only(['name', 'email', 'introduction', 'avatar']));
+        return redirect()->route('users.show', $user->id)->with('success', '個人資料已經更新成功!');
     }
 }
