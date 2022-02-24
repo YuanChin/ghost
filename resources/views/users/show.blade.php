@@ -27,10 +27,10 @@
             <div classd="d-flex flex-column">
                 <div>
                     <div class="d-flex justify-content-center">
-                        <img src="https://cdn.learnku.com/uploads/images/201709/20/1/PtDKbASVcz.png?imageView2/1/w/60/h/60" class="w-50 h-50 rounded-circle" alt="{{ $user->name }}">
+                        <img src="{{ $user->avatar }}" class="w-50 h-50 rounded-circle" alt="{{ $user->name }}">
                     </div>
                     <div class="d-flex justify-content-center">
-                        <p class="my-2 text-gray-50">{{ $user->name }}</p>
+                        <p class="my-2 text-gray-50">{{ Str::upper($user->name) }}</p>
                     </div>
                 </div>
                 <hr>
