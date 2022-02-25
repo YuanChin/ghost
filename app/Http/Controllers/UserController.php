@@ -26,6 +26,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
@@ -36,6 +37,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user, ImageUploadHandler $uploader)
     {
+        $this->authorize('update', $user);
         // 允許的請求欄位
         $data = $request->only(['name', 'email', 'introduction', 'avatar']);
 
