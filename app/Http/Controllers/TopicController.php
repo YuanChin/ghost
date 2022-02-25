@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Category;
+
 class TopicController extends Controller
 {
-    public function index()
+    public function index(Category $category)
     {
-        return view('topics.index');
+        $categories = $category->all();
+        
+        return view('topics.index', compact('categories'));
     }
 }
