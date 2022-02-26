@@ -19,15 +19,17 @@ class CategoryController extends Controller
      */
     public function show(Request $request, Topic $topic, Category $category)
     {
-        $topics = $topic->where('category_id', $category->id)
+        $topics = $topic->withOrder($order = $request->input('order', ""))
+                        ->where('category_id', $category->id)
                         ->with('user', 'category')
                         ->paginate(20);
         $categories = $category->all();
 
         return view('topics.index', [
-            'topics'   => $topics,
+            'topics'        => $topics,
             'category_name' => $category->name,
-            'categories' => $categories
+            'categories'    => $categories,
+            'order'         => $order
         ]);
     }
 }

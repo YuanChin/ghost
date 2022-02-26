@@ -63,3 +63,17 @@
         </div>
     </div>
 @stop
+
+@section('scripts')
+
+<script>
+    var order = {!! json_encode($order) !!}
+    $(function () {
+        $('.order-form select[name=order]').val(order);
+        $('.order-form select[name=order]').on('change', function () {
+            $('.order-form').submit();
+        });
+    });
+</script>
+
+@stop

@@ -16,12 +16,17 @@ class TopicController extends Controller
      * @param Category $category
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factor
      */
-    public function index(Topic $topic, Category $category)
+    public function index(Request $request, Topic $topic, Category $category)
     {
-        $topics = $topic->with('user', 'category')
+        $topics = $topic->withOrder($order = $request->input('order', ""))
+                        ->with('user', 'category')
                         ->paginate(20);
         $categories = $category->all();
 
-        return view('topics.index', compact('topics', 'categories'));
+        return view('topics.index', [
+            'topics'        => $topics,
+            'categories'    => $categories,
+            'order'         => $order
+        ]);
     }
 }
