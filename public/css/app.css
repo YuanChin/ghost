@@ -19366,6 +19366,48 @@ readers do not read off random characters that represent icons */
   border-color: #374151;
 }
 
+/* ------------------ img ------------------ */
+.img-3 {
+  width: 3rem;
+  height: 3rem;
+}
+
+.img-4 {
+  width: 4rem;
+  height: 4rem;
+}
+
+.page-item:first-child .page-link {
+  margin-left: 0;
+  border-top-left-radius: 0.75rem;
+  border-bottom-left-radius: 0.75rem;
+}
+.page-item:last-child .page-link {
+  border-top-right-radius: 0.75rem;
+  border-bottom-right-radius: 0.75rem;
+}
+.page-item.active .page-link {
+  color: #f9fafb;
+  background-color: #1f2937;
+  border-color: #374151;
+}
+.page-item.disabled .page-link {
+  color: transparent;
+  background-color: #111827;
+  border-color: #1f2937;
+}
+.page-item a:hover {
+  color: #f9fafb;
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.page-link {
+  color: #9ca3af;
+  background-color: #111827;
+  border: 1px solid #1f2937;
+}
+
 /* ------------------ universal ------------------ */
 html {
   position: relative;
@@ -19391,6 +19433,10 @@ hr {
   margin-bottom: 1rem;
   border: 0;
   border-top: 1.2px solid white;
+}
+
+#app > div.container-fluid, #app > div.container-sm, #app > div.container-md, #app > div.container-lg, #app > div.container-xl {
+  margin-bottom: 5rem;
 }
 
 /* ------------------ header ------------------ */
@@ -19430,6 +19476,54 @@ hr {
   transition: all 0.3s linear;
   -webkit-transform: rotate(90deg);
   -webkit-transition: all 0.3s linear;
+}
+
+/* ------------------ the related css style of the topic's pages ------------------ */
+/***** sidebar *****/
+#sidebar-menu .nav-link {
+  padding: 1rem;
+}
+#sidebar-menu .active a {
+  background-color: #111827;
+}
+
+.sidebar-sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 74px;
+  z-index: 1;
+}
+
+/***** 文章頭部選取區 *****/
+.show-selector .active a {
+  background-color: #1f2937;
+}
+
+.card-sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 74px;
+  z-index: 1;
+}
+
+/***** 文章主內容區 *****/
+.list-unstyled a .head-style::after {
+  transform: scaleX(0);
+  transform-origin: bottom left;
+}
+.list-unstyled a .head-style::after {
+  content: " ";
+  display: block;
+  border-bottom: 2.5px solid #a5b4fc;
+  z-index: -1;
+  transition: transform 1s ease-in-out;
+}
+.list-unstyled a:hover {
+  text-decoration: none;
+}
+.list-unstyled a:hover .head-style::after {
+  transform: scaleX(1);
+  transform-origin: bottom right;
 }
 
 /* ------------------ footer ------------------ */

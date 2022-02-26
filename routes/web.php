@@ -40,3 +40,11 @@ Route::get('/', 'TopicController@index')
 // the related route of users
 Route::get('users/{user}', 'UserController@show')
      ->name('users.show');
+
+// the related routes of topic
+Route::get('topics', 'TopicController@index')
+     ->name('topics.index');
+
+// topics in the category
+Route::get('categories/{category}', 'CategoryController@show')
+     ->name('categories.show');

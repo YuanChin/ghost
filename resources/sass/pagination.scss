@@ -1,0 +1,40 @@
+.page-item {
+    &:first-child {
+        .page-link {
+            margin-left: 0;
+            border-top-left-radius: 0.75rem;
+            border-bottom-left-radius: 0.75rem;
+        }
+    }
+    &:last-child {
+        .page-link {
+            border-top-right-radius: 0.75rem;
+            border-bottom-right-radius: 0.75rem;
+        }
+    }
+    &.active {
+        .page-link {
+            color: rgb(249 250 251);
+            background-color: rgb(31 41 55);
+            border-color: rgb(55, 65, 81);
+        }
+    }
+    &.disabled {
+        .page-link {
+            color: transparent;
+            background-color: rgb(17 24 39);
+            border-color: rgb(31 41 55);
+        }
+    }
+    a:hover {
+        color: rgb(249 250 251);
+        background-color: rgb(31 41 55);
+        border-color: rgb(55, 65, 81);
+    }
+}
+
+.page-link {
+    color: rgb(156 163 175);
+    background-color: rgb(17 24 39);
+    border: 1px solid rgb(31 41 55);
+}

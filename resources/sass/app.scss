@@ -16,6 +16,8 @@
 // basic style
 @import 'base';
 
+// 分頁樣式
+@import 'pagination';
 
 /* ------------------ universal ------------------ */
 html {
@@ -42,6 +44,10 @@ hr {
     margin-bottom: 1rem;
     border: 0;
     border-top: 1.2px solid rgb(255, 255, 255);
+}
+
+#app > div.container-fluid {
+    margin-bottom: 5rem;
 }
 
 /* ------------------ header ------------------ */
@@ -88,7 +94,66 @@ hr {
     -webkit-transition: all .3s linear;
 }
 
+/* ------------------ the related css style of the topic's pages ------------------ */
+/***** sidebar *****/
+#sidebar-menu {
+    .nav-link {
+        padding: 1rem;
+    }
 
+    .active {
+        a {
+            background-color: rgb(17 24 39);
+        }
+    }
+}
+
+.sidebar-sticky-top {
+    position: sticky;
+    top: 74px;
+    z-index: 1; 
+}
+
+/***** 文章頭部選取區 *****/
+.show-selector {
+    .active {
+        a {
+            background-color: rgb(31 41 55);
+        }
+    }
+}
+
+.card-sticky-top {
+    position: sticky;
+    top: 74px;
+    z-index: 1;
+}
+
+/***** 文章主內容區 *****/
+.list-unstyled a {
+
+    .head-style::after {
+        transform: scaleX(0);
+        transform-origin: bottom left;
+    }
+
+    .head-style::after {
+        content: " ";
+        display: block;
+        border-bottom: 2.5px solid rgb(165, 180, 252);
+        z-index: -1;
+        transition: transform 1s ease-in-out;
+    }
+
+    &:hover {
+        text-decoration: none;
+
+        .head-style::after {
+            transform: scaleX(1);
+            transform-origin: bottom right;
+        }
+    }
+}
 
 /* ------------------ footer ------------------ */
 #footer {
