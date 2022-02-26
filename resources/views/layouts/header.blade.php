@@ -23,15 +23,20 @@
         </ul>
 
         <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav navbar-right">
             @guest
             <!-- Authentication Links -->
             <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">登入</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">註冊</a></li>
             @else
+            <li class="nav-item">
+                <a id="create-topic-link" class="nav-link mr-2" href="{{ route('topics.create') }}">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-gray-400 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="{{ Auth::user()->avatar }}" class="rounded-circle img-responsive img-circle" width="30px" height="30px">
+                    <img src="{{ Auth::user()->avatar }}" class="rounded-circle img-2">
                     <span class="ml-1">{{ Auth::user()->name }}</span>
                 </a>
                 <div class="user-menu dropdown-menu bg-gray-700 mt-1" aria-labelledby="navbarDropdown">

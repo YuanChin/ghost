@@ -19367,6 +19367,11 @@ readers do not read off random characters that represent icons */
 }
 
 /* ------------------ img ------------------ */
+.img-2 {
+  width: 2rem;
+  height: 2rem;
+}
+
 .img-3 {
   width: 3rem;
   height: 3rem;
@@ -19450,6 +19455,10 @@ hr {
 
 .navbar-static-top {
   margin-top: 0px;
+}
+
+.navbar-right {
+  align-items: center;
 }
 
 /* ------------------ the related css style of the user's pages ------------------ */

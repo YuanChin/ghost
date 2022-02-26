@@ -59,7 +59,7 @@
 
         {{-- right sidebar --}}
         <div class="col-lg-3 col-md-3">
-
+            @include('topics.right_sidebar')
         </div>
     </div>
 @stop

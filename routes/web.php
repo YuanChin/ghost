@@ -26,8 +26,14 @@ Route::prefix('facebook')->name('facebook.')->group(function () {
  * they can be used after having to login and verify
  */
 Route::middleware(['auth', 'verified'])->group(function () {
+     // the related route of users
      Route::resource('users', 'UserController')->only([
           'edit', 'update'
+     ]);
+
+     // the related routes of topic
+     Route::resource('topics', 'TopicController')->only([
+          'edit', 'update', 'create', 'store', 'destroy'
      ]);
 });
 
@@ -44,6 +50,8 @@ Route::get('users/{user}', 'UserController@show')
 // the related routes of topic
 Route::get('topics', 'TopicController@index')
      ->name('topics.index');
+Route::get('topics/{topic}', 'TopicController@show')
+     ->name('topics.show');
 
 // topics in the category
 Route::get('categories/{category}', 'CategoryController@show')
