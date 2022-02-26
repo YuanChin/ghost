@@ -2,7 +2,7 @@
 <ul class="list-unstyled">
     @foreach ($topics as $topic)
         <li class="border-gray-300 border-y-2 mb-3 p-4">
-            <div class="d-flex d-flex-row">
+            <div class="d-flex flex-row">
                 <a href="{{ route('users.show', [$topic->user_id]) }}" title="{{ $topic->user->name }}">
                     <img src="{{ $topic->user->avatar }}" class="img-4 mr-3 rounded-xl" alt="{{ $topic->user->name }}">
                 </a>
@@ -12,7 +12,7 @@
                         <p class="text-gray-400">{!! Str::limit($topic->body, 100, $end = '...') !!}</p>
                     </a>
                     <small class="text-gray-400">
-                        <a href=""
+                        <a href="{{ route('categories.show', $topic->category_id) }}"
                            title="{{ $topic->category->name }}">
                             <i class="far fa-folder"></i>
                             {{ $topic->category->name }}

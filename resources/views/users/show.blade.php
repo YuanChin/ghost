@@ -16,8 +16,16 @@
                     </div>
                 </div>
                 <ul class="pl-0 mt-3">
-                    <li class="active"><a class="nav-link" href="">發布話題</a></li>
-                    <li class=""><a class="nav-link" href="">留言紀錄</a></li>
+                    <li class="{{ active_class(if_query('tab', null)) }}">
+                        <a class="nav-link" href="{{ route('users.show', $user->id) }}">
+                            <span>發布話題</span>
+                        </a>
+                    </li>
+                    <li class="{{ active_class(if_query('tab', 'replies')) }}">
+                        <a class="nav-link" href="">
+                            <span>留言紀錄</span>
+                        </a>
+                    </li>
                 </ul>
             </li>        
         </ul>
@@ -67,7 +75,7 @@
     </div>
 
     <div id="list" class="col-md-7">
-        
+        @include('users.topics')
     </div>
 </div>
 
