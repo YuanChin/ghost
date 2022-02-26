@@ -27,7 +27,7 @@ class CategoryController extends Controller
 
         return view('topics.index', [
             'topics'        => $topics,
-            'category_name' => $category->name,
+            'category'      => $category,
             'categories'    => $categories,
             'order'         => $order
         ]);
