@@ -25,6 +25,10 @@ class CategoryController extends Controller
                         ->paginate(20);
         $categories = $category->all();
 
+        if ($request->ajax()) {
+            return view('topics.topic_list', compact('topics'));
+        }
+
         return view('topics.index', [
             'topics'        => $topics,
             'category'      => $category,

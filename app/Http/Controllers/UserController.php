@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
 use App\Handlers\ImageUploadHandler;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -14,9 +15,22 @@ class UserController extends Controller
      *
      * @return void
      */
-    public function show(User $user)
+    public function show(Request $request, User $user)
     {
         $topics = $user->topics()->recent()->paginate(5);
+
+        if ($request->ajax()){
+            $tab = $request->tab;
+            switch ($tab)
+            {
+                case 'replies':
+                    return view('users.replies', compact('replies'));
+                    break;
+                default:
+                    return view('users.topics', compact('topics'));
+            } 
+        }
+
         return view('users.show', [
             'user'   => $user,
             'topics' => $topics
