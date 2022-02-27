@@ -80,4 +80,15 @@ class Topic extends Model
     {
         return $query->orderBy('updated_at', 'desc');
     }
+
+    /**
+     * 使 URL 可以附加參數
+     *
+     * @param array $params
+     * @return string
+     */
+    public function link($params = [])
+    {
+        return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    }
 }

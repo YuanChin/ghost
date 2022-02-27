@@ -52,7 +52,7 @@ Route::get('users/{user}', 'UserController@show')
 // the related routes of topic
 Route::get('topics', 'TopicController@index')
      ->name('topics.index');
-Route::get('topics/{topic}', 'TopicController@show')
+Route::get('topics/{topic}/{slug?}', 'TopicController@show')
      ->name('topics.show');
 
 // topics in the category

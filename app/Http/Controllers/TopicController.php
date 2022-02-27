@@ -43,8 +43,13 @@ class TopicController extends Controller
      * @param Topic $topic
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factor
      */
-    public function show(Topic $topic)
+    public function show(Request $request, Topic $topic)
     {
+        // URL 自動矯正
+        if ( ! empty($topic->slug) && ($topic->slug != $request->slug)) {
+            return redirect($topic->link(), 301);
+        }
+
         return view('topics.show', [
             'topic' => $topic
         ]);
@@ -98,7 +103,7 @@ class TopicController extends Controller
         $topic->user_id = Auth::id();
         $topic->save();
 
-        return redirect()->route('topics.show', $topic->id)->with('success', '話題創建成功！');
+        return redirect()->to($topic->link())->with('success', '話題創建成功！');
     }
 
     /**
@@ -113,7 +118,7 @@ class TopicController extends Controller
         $this->authorize('update', $topic);
         $topic->update($request->all());
 
-        return redirect()->route('topics.show', $topic->id)->with('success', '話題更新成功！');
+        return redirect()->to($topic->link())->with('success', '話題更新成功！');
     }
 
     public function destroy(Topic $topic)

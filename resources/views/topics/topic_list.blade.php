@@ -7,7 +7,7 @@
                     <img src="{{ $topic->user->avatar }}" class="img-4 mr-3 rounded-xl" alt="{{ $topic->user->name }}">
                 </a>
                 <div class="d-flex flex-column">
-                    <a href="{{ route('topics.show', $topic->id) }}">
+                    <a href="{{ $topic->link() }}">
                         <h3 class="mt-0 mb-2 text-gray-50 head-style">{{ $topic->title }}</h3>
                         <p class="text-gray-400">{!! Str::limit($topic->body, 100, $end = '...') !!}</p>
                     </a>

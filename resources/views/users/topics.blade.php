@@ -3,7 +3,7 @@
         @foreach ($topics as $topic)
             <li class="bg-gray-700 rounded-xl mb-3 p-4">
                 <div class="d-flex flex-column">
-                    <a href="">
+                    <a href="{{ $topic->link() }}">
                         <h5 class="mt-0 mb-2 text-gray-50 head-style">{{ $topic->title }}</h5>
                     </a> 
                     <small class="text-gray-400">

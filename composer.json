@@ -16,7 +16,9 @@
         "mews/captcha": "~3.0",
         "mews/purifier": "~3.3",
         "overtrue/laravel-lang": "~4.0",
+        "predis/predis": "^1.1",
         "realrashid/sweet-alert": "^5.0",
+        "stichoza/google-translate-php": "^4.1",
         "summerblue/laravel-active": "8.*"
     },
     "require-dev": {
