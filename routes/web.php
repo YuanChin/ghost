@@ -37,6 +37,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
      ]);
      Route::post('upload_image', 'TopicController@uploadImage')
           ->name('topics.upload_image');
+
+     // the related routes of reply
+     Route::resource('replies', 'ReplyController')->only([
+          'store', 'destroy'
+     ]);
 });
 
 

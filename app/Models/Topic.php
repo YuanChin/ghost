@@ -38,6 +38,16 @@ class Topic extends Model
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Get the replies that owns the topic
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
 
     /**
      * 排序選擇

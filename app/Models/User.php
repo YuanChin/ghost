@@ -57,6 +57,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the replies that owns the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    /**
      * If the model's user_id belongs to the user
      * 
      * @param object $model
