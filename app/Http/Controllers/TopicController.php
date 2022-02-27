@@ -68,6 +68,24 @@ class TopicController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource
+     *
+     * @param Topic $topic
+     * @param Category $category
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factor
+     */
+    public function edit(Topic $topic, Category $category)
+    {
+        $this->authorize('update', $topic);
+        $categories = $category->all();
+
+        return view('topics.edit', [
+            'topic'      => $topic,
+            'categories' => $categories
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param TopicRequest $request
@@ -81,6 +99,21 @@ class TopicController extends Controller
         $topic->save();
 
         return redirect()->route('topics.show', $topic->id)->with('success', '話題創建成功！');
+    }
+
+    /**
+     * Update the specified resource in storage
+     *
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return \Illuminate\Routing\Redirector|\Illuminate\Http\RedirectResponse
+     */
+    public function update(TopicRequest $request, Topic $topic)
+    {
+        $this->authorize('update', $topic);
+        $topic->update($request->all());
+
+        return redirect()->route('topics.show', $topic->id)->with('success', '話題更新成功！');
     }
 
     /**

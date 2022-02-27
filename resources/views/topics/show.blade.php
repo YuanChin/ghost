@@ -39,6 +39,7 @@
         </div>
 
         <div class="row justify-content-end mt-2 mx-0">
+            @can('update', $topic)
             <div class="d-flex flex-row">
                 <div class="d-flex align-items-center p-1 mr-1">
                     <a href="{{ route('topics.edit', $topic->id) }}" title="編輯">
@@ -51,6 +52,7 @@
                     </a>      
                 </div>
             </div>
+            @endcan
         </div>
         
     </div>
