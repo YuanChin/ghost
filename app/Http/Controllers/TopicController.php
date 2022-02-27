@@ -116,6 +116,14 @@ class TopicController extends Controller
         return redirect()->route('topics.show', $topic->id)->with('success', '話題更新成功！');
     }
 
+    public function destroy(Topic $topic)
+    {
+        $this->authorize('destroy', $topic);
+        $topic->delete();
+
+        return [];
+    }
+
     /**
      * Upload the images of the topic
      *

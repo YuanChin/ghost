@@ -58,3 +58,27 @@
     </div>
 </div>
 @stop
+
+@section('scripts')
+
+<script>
+    $(function () {
+        $('.delete-topic').on('click', function () {
+            let id = $(this).data('id');
+            Swal.fire({
+                title: "確定要刪除該篇文章？",
+                icon: "warning",
+                showCancelButton: true,
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    axios.delete('/topics/' + id)
+                        .then(function () {
+                            window.location.replace("{{ url('/') }}");
+                        });
+                }
+            });
+        })
+    });
+</script>
+
+@stop

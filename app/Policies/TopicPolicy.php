@@ -22,4 +22,16 @@ class TopicPolicy
     {
         return $user->isAuthorOf($topic);
     }
+
+    /**
+     * 刪除授權
+     *
+     * @param User $user
+     * @param Topic $topic
+     * @return bool
+     */
+    public function destroy(User $user, Topic $topic)
+    {
+        return $user->isAuthorOf($topic);
+    }
 }
