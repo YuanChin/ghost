@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Topic;
 use App\Http\Requests\TopicRequest;
+use App\Handlers\ImageUploadHandler;
 
 class TopicController extends Controller
 {
@@ -80,5 +81,33 @@ class TopicController extends Controller
         $topic->save();
 
         return redirect()->route('topics.show', $topic->id)->with('success', '話題創建成功！');
+    }
+
+    /**
+     * Upload the images of the topic
+     *
+     * @param Request $request
+     * @param ImageUploadHandler $uploader
+     * @return void
+     */
+    public function uploadImage(Request $request, ImageUploadHandler $uploader)
+    {
+        $data = [
+            'success'   => false,
+            'msg'       => '上傳失敗!',
+            'file_path' => ''
+        ];
+
+        if ($file = $request->upload_file) {
+            $result = $uploader->save($file, 'topics', Auth::id(), 1024);
+
+            if ($result) {
+                $data['file_path'] = $result['path'];
+                $data['msg'] = "上傳成功!";
+                $data['siccess'] = true;
+            }
+        }
+
+        return $data;
     }
 }

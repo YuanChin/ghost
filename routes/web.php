@@ -35,6 +35,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
      Route::resource('topics', 'TopicController')->only([
           'edit', 'update', 'create', 'store', 'destroy'
      ]);
+     Route::post('upload_image', 'TopicController@uploadImage')
+          ->name('topics.upload_image');
 });
 
 

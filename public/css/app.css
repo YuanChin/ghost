@@ -19535,6 +19535,11 @@ hr {
   transform-origin: bottom right;
 }
 
+/***** simditor editor *****/
+.simditor-body img {
+  max-width: 100%;
+}
+
 /* ------------------ footer ------------------ */
 #footer {
   position: absolute;

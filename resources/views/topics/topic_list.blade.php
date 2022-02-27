@@ -11,7 +11,7 @@
                         <h3 class="mt-0 mb-2 text-gray-50 head-style">{{ $topic->title }}</h3>
                         <p class="text-gray-400">{!! Str::limit($topic->body, 100, $end = '...') !!}</p>
                     </a>
-                    <small class="text-gray-400">
+                    <small class="text-gray-400 mt-2">
                         <a href="{{ route('categories.show', $topic->category_id) }}"
                            title="{{ $topic->category->name }}">
                             <i class="far fa-folder"></i>
@@ -32,6 +32,7 @@
                             <span> {{ $topic->reply_count }} </span>
                         </a>
                     </small>
+                    
                 </div>
             </div>
         </li>
