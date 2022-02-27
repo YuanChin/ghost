@@ -2,74 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reply;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use App\Http\Requests\ReplyRequest;
+use App\Models\Reply;
+
+
+use function GuzzleHttp\Promise\all;
 
 class ReplyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReplyRequest $request, Reply $reply)
     {
-        //
-    }
+        $reply->content = $request->content;
+        $reply->topic_id = $request->topic_id;
+        $reply->user_id = Auth::id();
+        $reply->save();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Reply $reply)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Reply $reply)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Reply  $reply
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Reply $reply)
-    {
-        //
+        return redirect()->to($reply->topic->link())->with('success', '評論創建成功！');
     }
 
     /**
@@ -80,6 +37,9 @@ class ReplyController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        $this->authorize('destroy', $reply);
+        $reply->delete();
+
+        return [];
     }
 }

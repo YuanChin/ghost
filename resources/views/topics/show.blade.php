@@ -57,12 +57,37 @@
         
     </div>
 </div>
+{{-- reply_list --}}
+<div class="row justify-content-start text-gray-50 rounded-xl mt-3">
+    <div class="col-md-8">
+        @include('topics.reply_list', ['replies' => $topic->replies()->with('user')->get()])
+    </div>
+</div>
+{{-- reply_box --}}
+<div>
+    @includeWhen(Auth::check(), 'topics.reply_box', ['topic' => $topic])
+</div>
 @stop
 
 @section('scripts')
 
 <script>
     $(function () {
+        let replyContent =  $('#reply-content');
+        let cancel = $('#cancel');
+        
+        replyContent.click(function () {
+            this.rows = "10";
+            cancel.attr('hidden', false);
+            cancel.parent('div').addClass('align-self-end')
+        });
+        
+        cancel.click(function () {
+            replyContent.attr('rows', '1');
+            cancel.attr('hidden', true);
+            cancel.parent('div').removeClass('align-self-end')
+        });
+
         $('.delete-topic').on('click', function () {
             let id = $(this).data('id');
             Swal.fire({
@@ -77,7 +102,23 @@
                         });
                 }
             });
-        })
+        });
+
+        $('.delete-reply').on('click', function () {
+            let id = $(this).data('id');
+            Swal.fire({
+                title: "確定要刪除該則留言？",
+                icon: "warning",
+                showCancelButton: true,
+            }).then(function (result) {
+                if (result.isConfirmed) {
+                    axios.delete('/replies/' + id)
+                        .then(function () {
+                            window.location.reload();
+                        });
+                }
+            });
+        });
     });
 </script>
 
