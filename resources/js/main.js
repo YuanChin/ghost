@@ -22,4 +22,23 @@ $(function () {
             }
         });
     });
+
+    // 消息通知
+    $('#notification-link').on('click', function (event) {
+        event.preventDefault();
+        // 取得服務器位址
+        let target = $(this).attr('href');
+
+        $.ajax({
+            type: "GET",
+            url: target,
+            dataType: 'html',
+            success: function (response) {
+                $('#notification-area').empty().html(response);
+            },
+            error: function (thrownError) {
+                alert('No response from server')
+            }
+        });
+    });
 });

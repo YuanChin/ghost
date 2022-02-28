@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -75,5 +76,37 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isAuthorOf($model)
     {
         return $this->id == $model->user_id;
+    }
+
+    /**
+     * 話題回覆通知
+     *
+     * @param Replu $instance
+     * @return void
+     */
+    public function replyNotify($instance)
+    {
+        // 判斷是否為同一個用戶
+        if ($this->id == Auth::id()) {
+            return;
+        }
+        // 只有數據庫類型通知才需提醒
+        if (method_exists($instance, 'toDatabase')) {
+            $this->increment('notification_count');
+        }
+
+        $this->notify($instance);
+    }
+
+    /**
+     * 標記為已讀
+     * 
+     * @return void
+     */
+    public function markAsRead()
+    {
+        $this->notification_count = 0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
     }
 }

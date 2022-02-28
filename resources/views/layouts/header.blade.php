@@ -34,6 +34,20 @@
                     <i class="fa-solid fa-pen"></i>
                 </a>
             </li>
+            <li class="nav-item">
+                <a id="notification-link" href="{{ route('notifications.index') }}"
+                   class="nav-link mr-3 {{ Auth::user()->notification_count > 0 ? 'text-rose-200' : 'secondary' }}"
+                   data-toggle="modal" data-target="#notificationModal">
+                    <div class="d-flex flex-row">
+                        <div class="d-flex align-items-center mr-1">
+                            <span><i class="fas fa-bell"></i></span>
+                        </div>
+                        <div class="d-flex">
+                            <span>{{ Auth::user()->notification_count }}</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link text-gray-400 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{ Auth::user()->avatar }}" class="rounded-circle img-2">
@@ -61,3 +75,18 @@
         </ul>
     </div>
 </nav>
+
+<div class="modal fade" id="notificationModal" tabindex="-1" aria-labelledby="notificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content bg-gray-800 px-3 py-2 rounded-xl">
+            <div class="modal-header border-0 text-gray-50">
+                <h4 class="modal-title" id="notificationModalLabel"><i class="fas fa-bell mr-2"></i>通知</h4>
+                <button type="button" class="close text-gray-50" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="notification-area" class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>

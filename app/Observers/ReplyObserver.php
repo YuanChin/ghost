@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Reply;
+use App\Notifications\TopicReplied;
 
 class ReplyObserver
 {
@@ -29,6 +30,8 @@ class ReplyObserver
         if (! app()->runningInConsole()) {
             // 更新回覆數量
             $reply->recordReplyCount();
+            // 通知該話題作者有新回覆
+            $reply->topic->user->replyNotify(new TopicReplied($reply));
         }
     }
 }

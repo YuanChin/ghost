@@ -42,6 +42,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
      Route::resource('replies', 'ReplyController')->only([
           'store', 'destroy'
      ]);
+
+     // the related route of notification
+     Route::resource('notifications', 'NotificationController')->only([
+          'index'
+     ]);
 });
 
 
