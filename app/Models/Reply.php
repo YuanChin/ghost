@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Reply extends Model
 {
-    use HasFactory;
+    use HasFactory, Traits\ReplyCount;
 
     /**
      * The attributes that are mass assignable
@@ -18,8 +18,6 @@ class Reply extends Model
         'content'
     ];
 
-
-    
 
     /**
      * Get the user that owns the reply

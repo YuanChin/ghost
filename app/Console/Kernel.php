@@ -16,6 +16,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+
+        // 每六小時執行一次同步回覆數量至數據庫當中
+        $schedule->command('ghost:sync-reply-count')->everySixHours();
     }
 
     /**

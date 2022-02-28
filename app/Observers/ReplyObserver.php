@@ -17,4 +17,16 @@ class ReplyObserver
         // 過濾輸入數據避免XSS注入攻擊
         $reply->content = clean($reply->content, 'user_topic_body');
     }
+
+    /**
+     * 回覆創建完後觸發的事件
+     *
+     * @param Reply $reply
+     * @return void
+     */
+    public function created(Reply $reply)
+    {
+        // 更新回覆數量
+        $reply->recordReplyCount();
+    }
 }
