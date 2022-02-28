@@ -26,7 +26,9 @@ class ReplyObserver
      */
     public function created(Reply $reply)
     {
-        // 更新回覆數量
-        $reply->recordReplyCount();
+        if (! app()->runningInConsole()) {
+            // 更新回覆數量
+            $reply->recordReplyCount();
+        }
     }
 }
