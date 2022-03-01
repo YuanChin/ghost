@@ -65,7 +65,7 @@
                         <h5 class="my-2 text-gray-50"><strong>最後活躍</strong></h5>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <p title=""></p>
+                        <span>{{ $user->last_actived_at->diffForHumans() }}</span>
                     </div>
                 </div>
                 

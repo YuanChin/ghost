@@ -19,6 +19,8 @@ class Kernel extends ConsoleKernel
 
         // 每六小時執行一次同步回覆數量至數據庫當中
         $schedule->command('ghost:sync-reply-count')->everySixHours();
+        // 每零時執行一次，將最後一次登入同步至數據庫中
+        $schedule->command('ghost:sync-last-actived-at')->dailyAt('00:00');
     }
 
     /**
