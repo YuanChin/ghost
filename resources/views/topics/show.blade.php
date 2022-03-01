@@ -52,6 +52,16 @@
                     </a>      
                 </div>
             </div>
+            @else
+                @if($favored)
+                    <div class="d-flex">
+                        <a class="disfavor text-rose-500" title="取消收藏"><i class="fas fa-heart"></i></a>
+                    </div>
+                @else
+                    <div class="d-flex">
+                        <a class="favor" title="收藏文章"><i class="fas fa-heart"></i></a>
+                    </div>
+                @endif
             @endcan
         </div>
         
@@ -118,6 +128,43 @@
                         });
                 }
             });
+        });
+
+        $('.favor').on('click', function (event) {
+            axios.post("{{ route('topics.favor', ['topic' => $topic->id]) }}")
+                .then(
+                    function () {
+                        Toast.fire({
+                            icon: 'success',
+                            title: '文章收藏成功',
+                        }).then(function () {
+                            window.location.reload();
+                        });
+                    },
+                    function (error) {
+                        if (error.response && error.response.status === 401) {
+                            Swal.fire(
+                                '請先登入', '', 'error'
+                            );
+                        } else if (error.response && (error.response.data.msg || error.response.data.message)) {
+                            swal(error.response.data.msg ? error.response.data.msg : error.response.data.message, '', 'error');
+                        } else {
+                            swal('系統錯誤', '', 'error');
+                        }
+                    }
+                );
+        });
+
+        $('.disfavor').on('click', function () {
+            axios.delete("{{ route('topics.disfavor', ['topic' => $topic->id]) }}")
+                .then(function () {
+                    Toast.fire({
+                        icon: 'success',
+                        title: '文章取消收藏',
+                    }).then(function () {
+                        window.location.reload();
+                    });
+                });
         });
     });
 </script>

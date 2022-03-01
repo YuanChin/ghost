@@ -37,6 +37,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
      ]);
      Route::post('upload_image', 'TopicController@uploadImage')
           ->name('topics.upload_image');
+     Route::post('topics/{topic}/favor', 'TopicController@favor')
+          ->name('topics.favor');
+     Route::delete('topics/{topic}/disfavor', 'TopicController@disfavor')
+          ->name('topics.disfavor');
 
      // the related routes of reply
      Route::resource('replies', 'ReplyController')->only([

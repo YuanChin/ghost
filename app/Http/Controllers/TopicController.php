@@ -50,8 +50,14 @@ class TopicController extends Controller
             return redirect($topic->link(), 301);
         }
 
+        $favored = false;
+        if ($user = $request->user()) {
+            $favored = boolval($user->favoriteTopics()->find($topic->id));
+        }
+
         return view('topics.show', [
-            'topic' => $topic
+            'topic'   => $topic,
+            'favored' => $favored,
         ]);
     }
 
@@ -155,5 +161,40 @@ class TopicController extends Controller
         }
 
         return $data;
+    }
+
+    /**
+     * Collect a favorite topic
+     * 
+     * @param Request $request
+     * @param Topic $topic
+     * @return void
+     */
+    public function favor(Request $request, Topic $topic)
+    {
+        $user = $request->user();
+
+        if ($user->favoriteTopics()->find($topic->id)) {
+            return [];
+        }
+
+        $user->favoriteTopics()->attach($topic);
+
+        return [];
+    }
+
+    /**
+     * Cancel to collect a favorite topic
+     *
+     * @param Request $request
+     * @param Topic $topic
+     * @return void
+     */
+    public function disfavor(Request $request, Topic $topic)
+    {
+        $user = $request->user();
+        $user->favoriteTopics()->detach($topic);
+
+        return[];
     }
 }

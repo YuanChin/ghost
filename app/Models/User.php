@@ -68,6 +68,18 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the favorite topics that own the user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function favoriteTopics()
+    {
+        return $this->belongsToMany(Topic::class, 'user_favorite_topics')
+            ->withTimestamps()
+            ->orderBy('user_favorite_topics.created_at', 'desc');
+    }
+
+    /**
      * If the model's user_id belongs to the user
      * 
      * @param object $model
