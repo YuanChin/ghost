@@ -34,4 +34,18 @@ class ReplyObserver
             $reply->topic->user->replyNotify(new TopicReplied($reply));
         }
     }
+
+    /**
+     * 回覆刪除後觸發的事件
+     *
+     * @param Reply $reply
+     * @return void
+     */
+    public function deleted(Reply $reply)
+    {
+        if (! app()->runningInConsole()) {
+            // 更新回覆數量
+            $reply->recordReplyCount();
+        }
+    }
 }
