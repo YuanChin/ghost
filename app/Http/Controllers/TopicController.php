@@ -61,6 +61,21 @@ class TopicController extends Controller
         ]);
     }
 
+    public function favorites(Request $request, Category $category)
+    {
+        $topics = $request->user()->favoriteTopics()
+            ->with('user', 'category')
+            ->paginate(10);
+        $categories = $category->all();
+        $favored = true;
+
+        return view('topics.index', [
+            'topics'     => $topics,
+            'categories' => $categories,
+            'favored'    => $favored,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -22,15 +22,15 @@
                                         <span>全部</span>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item {{ active_class(if_route('topics.favorites')) }}">
                                     <a class="nav-link rounded-xl"
-                                       href="">
+                                       href="{{ route('topics.favorites')}}">
                                         <span>收藏</span>
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <!-- @unless (isset($favored)) -->
+                        @unless (isset($favored))
                         <div class="ml-auto d-flex flex-row">
                             <div class="d-flex align-items-center">
                                 文章排序依：
@@ -44,7 +44,7 @@
                                 </select>
                             </form>
                         </div>
-                        <!-- @endunless -->
+                        @endunless
                     </div>
                 </div>
                 <!-- 文章頭部選取區 end -->
@@ -67,7 +67,7 @@
 @section('scripts')
 
 <script>
-    var order = {!! json_encode($order) !!}
+    var order = {!! json_encode($order ?? '') !!}
     $(function () {
         $('.order-form select[name=order]').val(order);
         $('.order-form select[name=order]').on('change', function () {

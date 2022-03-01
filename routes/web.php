@@ -41,6 +41,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
           ->name('topics.favor');
      Route::delete('topics/{topic}/disfavor', 'TopicController@disfavor')
           ->name('topics.disfavor');
+     Route::get('topics/favorites', 'TopicController@favorites')
+          ->name('topics.favorites');
 
      // the related routes of reply
      Route::resource('replies', 'ReplyController')->only([
