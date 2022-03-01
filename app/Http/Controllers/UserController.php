@@ -18,7 +18,7 @@ class UserController extends Controller
     public function show(Request $request, User $user)
     {
         $topics = $user->topics()->recent()->paginate(5);
-
+        $replies = $user->replies()->with('topic')->paginate(10);
         if ($request->ajax()){
             $tab = $request->tab;
             switch ($tab)
@@ -32,8 +32,9 @@ class UserController extends Controller
         }
 
         return view('users.show', [
-            'user'   => $user,
-            'topics' => $topics
+            'user'    => $user,
+            'topics'  => $topics,
+            'replies' => $replies,
         ]);
     }
 

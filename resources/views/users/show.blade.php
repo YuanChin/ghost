@@ -22,7 +22,7 @@
                         </a>
                     </li>
                     <li class="{{ active_class(if_query('tab', 'replies')) }}">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{{ route('users.show', [$user->id, 'tab' => 'replies']) }}">
                             <span>留言紀錄</span>
                         </a>
                     </li>
@@ -75,7 +75,11 @@
     </div>
 
     <div id="list" class="col-md-7">
-        @include('users.topics')
+        @if (if_query('tab', 'replies'))
+            @include('users.replies')
+        @else
+            @include('users.topics')
+        @endif
     </div>
 </div>
 
