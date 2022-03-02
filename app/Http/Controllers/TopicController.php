@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Category;
 use App\Models\Topic;
+use App\Models\Link;
 use App\Http\Requests\TopicRequest;
 use App\Handlers\ImageUploadHandler;
+
 
 class TopicController extends Controller
 {
@@ -17,23 +19,26 @@ class TopicController extends Controller
      *
      * @param Topic $topic
      * @param Category $category
+     * @param Link $link
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factor
      */
-    public function index(Request $request, Topic $topic, Category $category)
+    public function index(Request $request, Topic $topic, Category $category, Link $link)
     {
         $topics = $topic->withOrder($order = $request->input('order', ""))
                         ->with('user', 'category')
                         ->paginate(20);
         $categories = $category->all();
+        $links = $link->getRecommendedResources();
 
         if ($request->ajax()) {
             return view('topics.topic_list', compact('topics'));
         }
 
         return view('topics.index', [
-            'topics'        => $topics,
-            'categories'    => $categories,
-            'order'         => $order
+            'topics'     => $topics,
+            'categories' => $categories,
+            'order'      => $order,
+            'links'      => $links,    
         ]);
     }
 
@@ -61,18 +66,28 @@ class TopicController extends Controller
         ]);
     }
 
-    public function favorites(Request $request, Category $category)
+    /**
+     * Get the favorit topics that own the user
+     *
+     * @param Request $request
+     * @param Category $category
+     * @param Link $link
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
+    public function favorites(Request $request, Category $category, Link $link)
     {
         $topics = $request->user()->favoriteTopics()
             ->with('user', 'category')
             ->paginate(10);
         $categories = $category->all();
+        $links = $link->getRecommendedResources();
         $favored = true;
 
         return view('topics.index', [
             'topics'     => $topics,
             'categories' => $categories,
             'favored'    => $favored,
+            'links'      => $links,  
         ]);
     }
 
