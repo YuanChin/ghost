@@ -67,6 +67,14 @@ hr {
     align-items: center;
 }
 
+// search
+.search-box {
+    & > input {
+        border: none;
+        outline: none;
+    }
+}
+
 /* ------------------ the related css style of the user's pages ------------------ */
 #user-options-selector {
     ul {
