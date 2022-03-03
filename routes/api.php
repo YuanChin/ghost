@@ -14,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('v1')
+     ->namespace('Api')
+     ->name('api.v1.')
+     ->group(function () {
+
+    /**
+     * the related routes of authorization
+     */
+    // Login
+    Route::post('authorizations', 'AuthorizationController@store')
+         ->name('authorizations.store');
+    // Refresh token
+    Route::put('authorizations/current', 'AuthorizationController@update')
+         ->name('authorizations.update');
+    // Delete token
+    Route::delete('authorizations/current', 'AuthorizationController@destroy')
+         ->name('authorizations.destroy');
 });
