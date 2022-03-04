@@ -24,4 +24,21 @@ class TopicController extends Controller
 
         return new TopicResource($topic);
     }
+
+    /**
+     * Update the specified the resource in storage.
+     *
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return void
+     */
+    public function update(TopicRequest $request, Topic $topic)
+    {
+        // 權限
+        $this->authorize('update', $topic);
+
+        $topic->update($request->all());
+
+        return new TopicResource($topic);
+    }
 }
