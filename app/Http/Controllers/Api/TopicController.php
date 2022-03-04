@@ -41,4 +41,20 @@ class TopicController extends Controller
 
         return new TopicResource($topic);
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param Topic $topic
+     * @return void
+     */
+    public function destroy(Topic $topic)
+    {
+        // 權限
+        $this->authorize('destroy', $topic);
+
+        $topic->delete();
+
+        return response(null, 204);
+    }
 }
