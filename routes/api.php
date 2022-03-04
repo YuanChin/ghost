@@ -42,6 +42,8 @@ Route::prefix('v1')
            */
           Route::get('users/{user}', 'UserController@show')
                ->name('users.show');
+          Route::get('categories', 'CategoryController@index')
+               ->name('categories.index');
 
 
 
