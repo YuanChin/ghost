@@ -42,8 +42,15 @@ Route::prefix('v1')
            */
           Route::get('users/{user}', 'UserController@show')
                ->name('users.show');
+          
+          // the related route of category
           Route::get('categories', 'CategoryController@index')
                ->name('categories.index');
+          
+          // the related routes of topic
+          Route::resource('topics', 'TopicController')->only([
+               'index', 'show'
+          ]);
 
 
 
@@ -57,6 +64,11 @@ Route::prefix('v1')
                     ->name('user.update');
                Route::post('images', 'ImageController@store')
                     ->name('images.store');
+               
+               // the related routes of topic
+               Route::resource('topics', 'TopicController')->only([
+                    'store', 'update', 'destroy'
+               ]);
           });
      });
 
