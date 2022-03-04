@@ -19,16 +19,45 @@ Route::prefix('v1')
      ->name('api.v1.')
      ->group(function () {
 
-    /**
-     * the related routes of authorization
-     */
-    // Login
-    Route::post('authorizations', 'AuthorizationController@store')
-         ->name('authorizations.store');
-    // Refresh token
-    Route::put('authorizations/current', 'AuthorizationController@update')
-         ->name('authorizations.update');
-    // Delete token
-    Route::delete('authorizations/current', 'AuthorizationController@destroy')
-         ->name('authorizations.destroy');
+     Route::middleware('throttle:' . config('api.rate_limits.sign'))
+          ->group(function () {
+          /**
+           * the related routes of authorization
+           */
+          // Login
+          Route::post('authorizations', 'AuthorizationController@store')
+               ->name('authorizations.store');
+          // Refresh token
+          Route::put('authorizations/current', 'AuthorizationController@update')
+               ->name('authorizations.update');
+          // Delete token
+          Route::delete('authorizations/current', 'AuthorizationController@destroy')
+               ->name('authorizations.destroy');
+     });
+
+     Route::middleware('throttle:' . config('api.rate_limits.access'))
+          ->group(function () {
+          /**
+           * 遊客可以訪問的接口
+           */
+          Route::get('users/{user}', 'UserController@show')
+               ->name('users.show');
+
+
+
+          /**
+           * 登入後可以訪問的接口
+           */
+          Route::middleware('auth:api')->group(function () {
+               Route::get('user', 'UserController@current')
+                    ->name('user.show');
+          });
+     });
+
+
+
+
+
+
+    
 });
