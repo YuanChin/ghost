@@ -53,6 +53,8 @@ Route::prefix('v1')
                Route::resource('topics', 'TopicController')->only([
                     'store', 'update', 'destroy'
                ]);
+               Route::post('topics/{topic}/replies', 'ReplyController@store')
+                    ->name('topics.replies.store');
           });
 
           
