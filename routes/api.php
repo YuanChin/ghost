@@ -53,8 +53,12 @@ Route::prefix('v1')
                Route::resource('topics', 'TopicController')->only([
                     'store', 'update', 'destroy'
                ]);
+
+               // the related routes of reply
                Route::post('topics/{topic}/replies', 'ReplyController@store')
                     ->name('topics.replies.store');
+               Route::delete('topics/{topic}/replies/{reply}', 'ReplyController@destroy')
+                    ->name('topics.replies.destroy');
           });
 
           

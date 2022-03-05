@@ -12,6 +12,14 @@ use App\Models\Topic;
 
 class ReplyController extends Controller
 {
+    /**
+     * Store a newly created resource in storage
+     *
+     * @param ReplyRequest $request
+     * @param Topic $topic
+     * @param Reply $reply
+     * @return void
+     */
     public function store(ReplyRequest $request, Topic $topic, Reply $reply)
     {
         $reply->content = $request->content;
@@ -20,5 +28,24 @@ class ReplyController extends Controller
         $reply->save();
 
         return new ReplyResource($reply);
+    }
+
+    /**
+     * Remove the specified resource from storage
+     *
+     * @param Topic $topic
+     * @param Reply $reply
+     * @return void
+     */
+    public function destroy(Topic $topic, Reply $reply)
+    {
+        if ($reply->topic_id != $topic->id) {
+            abort(404);
+        }
+
+        $this->authorize('destroy', $reply);
+        $reply->delete();
+
+        return response(null, 204);
     }
 }
