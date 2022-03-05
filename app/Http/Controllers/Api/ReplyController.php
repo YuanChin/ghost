@@ -9,6 +9,7 @@ use App\Http\Requests\Api\ReplyRequest;
 use App\Http\Resources\ReplyResource;
 use App\Models\Reply;
 use App\Models\Topic;
+use App\Models\User;
 
 class ReplyController extends Controller
 {
@@ -24,6 +25,20 @@ class ReplyController extends Controller
             ->with('user')
             ->paginate();
 
+        return ReplyResource::collection($replies);
+    }
+
+    /**
+     * Display a listing of the resources
+     *
+     * @param User $user
+     * @return void
+     */
+    public function repliesOfTheUser(User $user)
+    {
+        $replies = $user->replies()
+            ->with('topic')
+            ->paginate();
         return ReplyResource::collection($replies);
     }
 

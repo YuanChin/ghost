@@ -79,6 +79,8 @@ Route::prefix('v1')
 
           Route::get('topics/{topic}/replies', 'ReplyController@index')
                ->name('topics.replies.index');
+          Route::get('users/{user}/replies', 'ReplyController@repliesOfTheUser')
+               ->name('users.replies.repliesOfTheUser');
 
 
 

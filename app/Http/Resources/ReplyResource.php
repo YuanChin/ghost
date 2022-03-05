@@ -21,6 +21,9 @@ class ReplyResource extends JsonResource
         if (in_array('user', $includes)) {
             $append['user'] = new UserResource($this->user);
         }
+        if (in_array('topic', $includes)) {
+            $append['topic'] = new TopicResource($this->topic);
+        }
 
         return array_merge(
             [
