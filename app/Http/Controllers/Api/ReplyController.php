@@ -13,6 +13,21 @@ use App\Models\Topic;
 class ReplyController extends Controller
 {
     /**
+     * Display a listing of the resource
+     *
+     * @param Topic $topic
+     * @return void
+     */
+    public function index(Topic $topic)
+    {
+        $replies = $topic->replies()
+            ->with('user')
+            ->paginate();
+
+        return ReplyResource::collection($replies);
+    }
+
+    /**
      * Store a newly created resource in storage
      *
      * @param ReplyRequest $request

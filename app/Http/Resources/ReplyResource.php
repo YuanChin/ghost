@@ -14,13 +14,24 @@ class ReplyResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'user_id' => (int) $this->user_id,
-            'topic_id' => (int) $this->topic_id,
-            'content' => $this->content,
-            'created_at' => (string) $this->created_at,
-            'updated_at' => (string) $this->updated_at,
-        ];
+        // 附加訊息
+        $includes = explode(',', $request->input('include', ''));
+
+        $append = [];
+        if (in_array('user', $includes)) {
+            $append['user'] = new UserResource($this->user);
+        }
+
+        return array_merge(
+            [
+                'id' => $this->id,
+                'user_id' => (int) $this->user_id,
+                'topic_id' => (int) $this->topic_id,
+                'content' => $this->content,
+                'created_at' => (string) $this->created_at,
+                'updated_at' => (string) $this->updated_at,
+            ],
+            $append
+        );
     }
 }

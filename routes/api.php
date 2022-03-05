@@ -77,6 +77,9 @@ Route::prefix('v1')
                'index', 'show'
           ]);
 
+          Route::get('topics/{topic}/replies', 'ReplyController@index')
+               ->name('topics.replies.index');
+
 
 
           
