@@ -42,6 +42,21 @@ class TopicController extends Controller
     }
 
     /**
+     * Display the specified resource
+     *
+     * @param int $id
+     * @return void
+     */
+    public function show($id)
+    {
+        $topic = Topic::query()
+            ->with('user', 'category')
+            ->findOrFail($id);
+        
+        return new TopicResource($topic);
+    }
+
+    /**
      * Store a newly created resource in storage
      *
      * @param TopicRequest $request
