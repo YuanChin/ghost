@@ -37,22 +37,6 @@ Route::prefix('v1')
 
      Route::middleware('throttle:' . config('api.rate_limits.access'))
           ->group(function () {
-          /**
-           * 遊客可以訪問的接口
-           */
-          Route::get('users/{user}', 'UserController@show')
-               ->name('users.show');
-          
-          // the related route of category
-          Route::get('categories', 'CategoryController@index')
-               ->name('categories.index');
-          
-          // the related routes of topic
-          Route::resource('topics', 'TopicController')->only([
-               'index', 'show'
-          ]);
-
-
 
           /**
            * 登入後可以訪問的接口
@@ -70,6 +54,26 @@ Route::prefix('v1')
                     'store', 'update', 'destroy'
                ]);
           });
+
+          
+          /**
+           * 遊客可以訪問的接口
+           */
+          Route::get('users/{user}', 'UserController@show')
+               ->name('users.show');
+          
+          // the related route of category
+          Route::get('categories', 'CategoryController@index')
+               ->name('categories.index');
+          
+          // the related routes of topic
+          Route::resource('topics', 'TopicController')->only([
+               'index', 'show'
+          ]);
+
+
+
+          
      });
 
 
