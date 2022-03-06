@@ -3,8 +3,7 @@
 Ghost是一個輕量社群論壇Web App，也提供了Restful APIs接口。
 
 它是基於 laravel 8+, laravel-admin 1.8+, bootstrap 4, sweet-alert2, Restful API 和 JWT 所創的。
-![Front](https://github.com/YuanChin/project_git/blob/master/ghost/front.PNG)
-![Back](https://github.com/YuanChin/project_git/blob/master/ghost/front.PNG)
+![Front](https://github.com/YuanChin/project_git/blob/master/ghost/front.PNG)![Back](https://github.com/YuanChin/project_git/blob/master/ghost/back.PNG)
 
 ## 項目演示
 
