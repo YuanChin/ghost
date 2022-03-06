@@ -9,6 +9,12 @@ use App\Http\Resources\NotificationResource;
 
 class NotificationController extends Controller
 {
+    /**
+     * Display a listing of  the resource
+     *
+     * @param Request $request
+     * @return void
+     */
     public function index(Request $request)
     {
         $notifications = $request->user()
@@ -16,5 +22,18 @@ class NotificationController extends Controller
             ->paginate();
 
         return NotificationResource::collection($notifications);
+    }
+
+    /**
+     * 統計消息通知數量
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function stats(Request $request)
+    {
+        return response()->json([
+            'unread_count' => $request->user()->notification_count,
+        ]);
     }
 }

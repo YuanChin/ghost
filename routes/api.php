@@ -63,6 +63,8 @@ Route::prefix('v1')
                // the related routes of notification
                Route::get('notifications', 'NotificationController@index')
                     ->name('notifications.index');
+               Route::get('notifications/stats', 'NotificationController@stats')
+                    ->name('notifications.stats');
           });
 
           
