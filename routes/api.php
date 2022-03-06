@@ -59,6 +59,10 @@ Route::prefix('v1')
                     ->name('topics.replies.store');
                Route::delete('topics/{topic}/replies/{reply}', 'ReplyController@destroy')
                     ->name('topics.replies.destroy');
+
+               // the related routes of notification
+               Route::get('notifications', 'NotificationController@index')
+                    ->name('notifications.index');
           });
 
           
