@@ -8,7 +8,7 @@ Ghost是一個輕量社群論壇Web App，也提供了Restful APIs接口。
 
 > 前台
 
-![Front](https://github.com/YuanChin/project_git/blob/master/ghost/1.gif)
+![Front](https://github.com/YuanChin/project_git/blob/master/ghost/3.gif)
 
 > 後台
 
@@ -26,6 +26,7 @@ Ghost是一個輕量社群論壇Web App，也提供了Restful APIs接口。
 - 後台管理: 管理用戶、內容及站點
 - Restful APIs 接口
 - 防止XSS攻擊
+- 分頁Ajax
 - 中間件：記錄使用者最後登入時間
 - 緩存：推薦資源、文章回覆數量及使用者最後登入時間
 - Command Line: 產生使用者權杖、同步使用者最後活躍時間及同步回覆數量
